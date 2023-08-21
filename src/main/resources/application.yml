@@ -1,0 +1,23 @@
+logging:
+  level:
+    org.springframework:
+      web: DEBUG
+      security: DEBUG
+server:
+  error:
+    include-stacktrace: never
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+  h2:
+    console:
+      enabled: true
+
+app:
+  auth:
+    tokenSecret: trokuttrokuttrokuttrokuttrokuttrokuttrokuttrokuttrokuttrokuttrokuttrokuttrokuttrokuttrokut
+    tokenExpirationDays: 3
+  cors:
+    allowedOrigins: http://localhost:5173

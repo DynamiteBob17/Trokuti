@@ -16,7 +16,7 @@ Trokuti imaju sljedeća svojstva:
 +Ažuriranje podataka o već unesenim trokutima  
 +Brisanje trokuta  
 +Dinamičko računanje/određivanje opsega, površine, vrste po kutovima i vrste prema odnosu duljina stranica  
-+Trajno skladište podataka između pokretanja aplikacije (idealno na serveru). Način skladištenja po izbor.  
++Trajno skladište podataka između pokretanja aplikacije (idealno na serveru). Način skladištenja po izbor.
 +Neka skladišteni trokuti budu vidljivi samo korisniku koji ih je dodao,  
 &nbsp;&nbsp;&nbsp;&nbsp;dakle korisnik 1 unese trokute 1, 2 i 3, pa korisnik 2 unese trokute 4, 5 i 6  
 &nbsp;&nbsp;&nbsp;&nbsp;korisnik 1 pri ponovnom otvaranju aplikacije vidi trokute 1, 2 i 3, ali ne trokute 4, 5 i 6,  
