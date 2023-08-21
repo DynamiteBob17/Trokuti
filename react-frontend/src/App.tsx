@@ -1,11 +1,11 @@
 import './App.scss';
 
 function App() {
-  return (
-    <>
-        trokuti
-    </>
-  );
+    return (
+        <>
+            trokuti
+        </>
+    );
 }
 
 export default App;
