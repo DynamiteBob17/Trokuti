@@ -25,3 +25,13 @@ Trokuti imaju sljedeća svojstva:
 +Sustav autentikacije (neka postoji korisnik s username "admin" i password "admin")  
 +Vizualni prikaz trokuta  
 +Vizualni prikaz trokuta u generiranom dokumentu  
+
+# Kako pokrenuti aplikaciju?
+1. Potrebni su Node, Yarn/NPM i Java 17+
+2. Pokrenete Spring Boot server aplikaciju iz **root** direktorija s `./mvnw spring-boot:run`
+3. Zatim se premjestite u 'react-frontend' direktorij sa `cd react-frontend`
+4. Nakon toga instalirate potrebene pakete s `npm install` ili `yarn install`
+5. Na kraju pokrenete React aplikaciju s `npm run dev` ili `yarn run dev`
+  
+- *napomena*: Spring Boot aplikacija koristi H2 in-memory bazu podataka zbog jednostavnosti,
+  stoga uglavnom svi podatci spremljeni na serveru nestaju prilikom gašenja ili ponovnog pokretanja Spring Boot aplikacije
