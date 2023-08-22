@@ -10,9 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.geo.Point;
 
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 @Data
 @NoArgsConstructor
@@ -29,12 +27,9 @@ public class Triangle {
     @Size(max = 33)
     private String name;
 
-    @NotNull private Point a;
-    @NotNull private Point b;
-    @NotNull private Point c;
+    @NotNull private Point a, b, c;
 
-    private Double perimeter;
-    private Double area;
+    private Double perimeter, area;
 
     @Enumerated(EnumType.STRING) private TriangleTypeByAngles typeByAngles;
     @Enumerated(EnumType.STRING) private TriangleTypeBySides typeBySides;
@@ -65,7 +60,8 @@ public class Triangle {
                 bc2 = euclidDistSquare(b, c),
                 ca2 = euclidDistSquare(c, a);
 
-        List<Double> sorted = new TreeSet<>(Set.of(ab2, bc2, ca2)).stream().toList();
+        List<Double> sorted = new ArrayList<>(List.of(ab2, bc2, ca2));
+        sorted.sort(Comparator.naturalOrder());
         double sideA = sorted.get(0);
         double sideB = sorted.get(1);
         double sideC = sorted.get(2);

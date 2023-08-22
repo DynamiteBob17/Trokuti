@@ -53,7 +53,7 @@ public class AuthController {
         log.info("Request to register through LOCAL auth provider as {}", signupRequest.getUsername());
 
         if (userService.existsUserWithUsername(signupRequest.getUsername())) {
-            throw new BadRequestException(String.format("Username %s already exists.", signupRequest.getUsername()));
+            throw new BadRequestException(String.format("Korisničko ime %s već postoji", signupRequest.getUsername()));
         }
 
         User user = new User();
@@ -70,7 +70,7 @@ public class AuthController {
     public static void giveRoleOfUser(User user, RoleRepository roleRepository) {
         Set<Role> roles = new HashSet<>();
         Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
-                .orElseThrow(() -> new ResourceNotFoundException("role", "name", RoleName.ROLE_USER.name()));
+                .orElseThrow(() -> new ResourceNotFoundException("uloga", "imenom", RoleName.ROLE_USER.name()));
         roles.add(userRole);
         user.setRoles(roles);
     }

@@ -13,8 +13,6 @@ public class CreateTriangleRequest {
     @NotBlank
     private String name;
 
-    @NotNull private Double ax, ay;
-    @NotNull private Double bx, by;
-    @NotNull private Double cx, cy;
+    @NotNull private Point a, b, c;
 
 }
