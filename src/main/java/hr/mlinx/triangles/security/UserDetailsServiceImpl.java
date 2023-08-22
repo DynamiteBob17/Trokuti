@@ -21,7 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userService.getUserByUsername(username)
-                .orElseThrow(() -> new ResourceNotFoundException("user", "username", username));
+                .orElseThrow(() -> new ResourceNotFoundException("korisnik", "korisničkim imenom", username));
 
         CustomUserDetails customUserDetails = new CustomUserDetails();
         customUserDetails.setId(user.getId());

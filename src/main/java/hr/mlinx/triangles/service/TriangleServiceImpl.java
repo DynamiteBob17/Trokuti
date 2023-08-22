@@ -29,7 +29,7 @@ public class TriangleServiceImpl implements TriangleService {
     @Override
     public Triangle getTriangleById(Long triangleId) {
         return triangleRepository.findById(triangleId)
-                .orElseThrow(() -> new ResourceNotFoundException("triangle", "triangleId", triangleId));
+                .orElseThrow(() -> new ResourceNotFoundException("trokut", "id-jem", triangleId));
     }
 
     @Override
@@ -37,7 +37,7 @@ public class TriangleServiceImpl implements TriangleService {
         Triangle triangle = getTriangleById(triangleId);
 
         if (!Objects.equals(triangle.getUser().getId(), userId)) {
-            throw new BadRequestException("You cannot modify triangle " + triangleId + " as it's not yours.");
+            throw new BadRequestException("Ne možete uređivati trokut " + triangleId + " jer nije vaš.");
         }
 
         return triangle;
@@ -65,19 +65,11 @@ public class TriangleServiceImpl implements TriangleService {
     }
 
     @Override
-    public Triangle updateTriangleNameById(String newName, Long triangleId, Long userId) {
-        Triangle triangle = checkAndGetTriangleByUserId(triangleId, userId);
-
-        triangle.setName(newName);
-
-        return saveTriangle(triangle);
-    }
-
-    @Override
-    public Triangle updateTriangleCoordinatesById(
+    public Triangle updateTriangleById(
             Point a,
             Point b,
             Point c,
+            String name,
             Long triangleId,
             Long userId) {
         Triangle triangle = checkAndGetTriangleByUserId(triangleId, userId);
@@ -85,6 +77,7 @@ public class TriangleServiceImpl implements TriangleService {
         triangle.setA(a);
         triangle.setB(b);
         triangle.setC(c);
+        triangle.setName(name);
 
         calculateAndDetermineTriangleFields(triangle);
 

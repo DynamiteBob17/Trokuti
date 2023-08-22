@@ -14,11 +14,11 @@ public interface TriangleService {
     Triangle saveTriangle(Triangle triangle);
     Triangle createTriangle(Triangle triangle, Long userId);
     void deleteTriangleById(Long triangleId, Long userId);
-    Triangle updateTriangleNameById(String newName, Long triangleId, Long userId);
-    Triangle updateTriangleCoordinatesById(
+    Triangle updateTriangleById(
             Point a,
             Point b,
             Point c,
+            String name,
             Long triangleId,
             Long userId
     );
