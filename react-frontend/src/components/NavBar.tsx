@@ -1,6 +1,6 @@
-import {Link} from 'react-router-dom';
 import {useAuth} from './authentication/AuthProvider.tsx';
 import './NavBar.scss';
+import {Button} from '@mui/material';
 
 function NavBar() {
     const {user, isAdmin, logout} = useAuth();
@@ -10,13 +10,13 @@ function NavBar() {
     return (
         <div className={'navbar'}>
             <div className={'navbar_left'}>
-                <Link to={'/mojiTrokuti'}>Moji trokuti</Link>
-                { isAdmin() && <Link to={'/admin'}>Administrator</Link> }
+                <Button href={'/mojiTrokuti'}>Moji trokuti</Button>
+                { isAdmin() && <Button href={'/admin'}>Administrator</Button> }
             </div>
             <div className={'navbar_right'}>
-                <button onClick={() => logout()}>
+                <Button variant={'contained'} disableElevation size={'small'} onClick={() => logout()}>
                     Odjava
-                </button>
+                </Button>
             </div>
         </div>
     );

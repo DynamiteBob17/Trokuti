@@ -1,4 +1,3 @@
-import './App.scss';
 import {Navigate, Route, Routes} from 'react-router-dom';
 import Auth from './components/authentication/Auth.tsx';
 import {useAuth} from './components/authentication/AuthProvider.tsx';
@@ -29,7 +28,7 @@ function App() {
 
     if (authenticating) {
         return (
-            <Loading message={'Autentifikacija u tijeku...'} spinner={'ring'} />
+            <Loading message={''} spinner={'ring'} />
         );
     }
 

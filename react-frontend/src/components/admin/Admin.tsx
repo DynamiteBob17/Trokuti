@@ -4,7 +4,6 @@ import Loading from '../Loading.tsx';
 import axios from 'axios';
 import makeConfig from '../../util/axiosConfig.ts';
 import {TOKEN_COOKIE_NAME, useAuth} from '../authentication/AuthProvider.tsx';
-import './Admin.scss';
 
 function Admin() {
     const [users, setUsers] = useState<IUsers>([]);
@@ -32,7 +31,7 @@ function Admin() {
     }
 
     return (
-        <div className={'admin'}>
+        <div className={'admin'} style={{marginLeft: '5px'}}>
             <p>Korisnici:</p>
             <ol>
                 {
