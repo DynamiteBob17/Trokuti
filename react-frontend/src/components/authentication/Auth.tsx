@@ -35,6 +35,8 @@ function Auth() {
 
                 if (error.response?.status === 401) {
                     setErrorMessage('Netočna lozinka');
+                } else if (error.code === 'ERR_NETWORK') {
+                    setErrorMessage('Greška sa serverom');
                 } else {
                     const resError: IError = error.response?.data as IError;
                     setErrorMessage(resError.message);
@@ -42,8 +44,9 @@ function Auth() {
             } else {
                 console.error(e);
                 setErrorMessage(defaultErrMsg);
-                setLoading(false);
             }
+
+            setLoading(false);
         }
     }
 
@@ -63,6 +66,8 @@ function Auth() {
 
                 if (error.response?.status === 401) {
                     setErrorMessage(defaultErrMsg);
+                } else if (error.code === 'ERR_NETWORK') {
+                    setErrorMessage('Greška sa serverom');
                 } else {
                     // @ts-ignore :)
                     if (typeof error.response?.data?.errors === 'undefined') {
@@ -82,8 +87,9 @@ function Auth() {
             } else {
                 console.error(e);
                 setErrorMessage(defaultErrMsg);
-                setLoading(false);
             }
+
+            setLoading(false);
         }
     }
 
