@@ -1,0 +1,19 @@
+.auth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 333px;
+
+    > div {
+      margin-bottom: 10px;
+    }
+  }
+
+}

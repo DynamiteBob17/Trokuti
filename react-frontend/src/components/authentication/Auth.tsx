@@ -5,6 +5,7 @@ import axios, {AxiosError} from 'axios';
 import IError, {IErrors} from '../../entities/IError.ts';
 import Loading from '../Loading.tsx';
 import './Auth.scss';
+import {Button, TextField} from '@mui/material';
 
 function Auth() {
     const [credentials, setCredentials] = useState<ICredentials>({
@@ -41,9 +42,8 @@ function Auth() {
             } else {
                 console.error(e);
                 setErrorMessage(defaultErrMsg);
+                setLoading(false);
             }
-        } finally {
-            setLoading(false);
         }
     }
 
@@ -82,9 +82,8 @@ function Auth() {
             } else {
                 console.error(e);
                 setErrorMessage(defaultErrMsg);
+                setLoading(false);
             }
-        } finally {
-            setLoading(false);
         }
     }
 
@@ -108,29 +107,55 @@ function Auth() {
     }
 
     const loginSlashSignupMessage = loggingIn
-        ? <p>Nemaš račun? <button onClick={() => {setLoggingIn(false); setErrorMessage(undefined);}}>Registriraj se</button></p>
-        : <p>Već imaš račun? <button onClick={() => {setLoggingIn(true); setErrorMessage(undefined);}}>Prijavi se</button></p>;
+        ? <p style={{fontStyle: 'italic'}}>
+            Nemaš račun?
+            <Button
+                style={{textTransform: 'none'}}
+                size={'small'}
+                onClick={() => {
+                    setLoggingIn(false);
+                    setErrorMessage(undefined);
+                }}
+            >
+                Registriraj se
+            </Button>
+        </p>
+        : <p style={{fontStyle: 'italic'}}>
+            Već imaš račun?
+            <Button
+                style={{textTransform: 'none'}}
+                size={'small'}
+                onClick={() => {
+                    setLoggingIn(true);
+                    setErrorMessage(undefined);
+                }}
+            >
+                Prijavi se
+            </Button>
+        </p>;
 
     return (
-        <div className={'login'}>
+        <div className={'auth'}>
             <form onSubmit={loggingIn ? handleLoginSubmit : handleSignupSubmit}>
-                <input
-                    type='text'
-                    placeholder='Korisničko ime'
+                <TextField
+                    variant={'standard'}
+                    type={'text'}
+                    label={'Korisničko ime'}
                     value={credentials.username}
                     name={'username'}
                     onChange={handleChange}
                 />
-                <input
-                    type='password'
-                    placeholder='Zaporka'
+                <TextField
+                    variant={'standard'}
+                    type={'password'}
+                    label={'Zaporka'}
                     value={credentials.password}
                     name={'password'}
                     onChange={handleChange}
                 />
-                <button type='submit' disabled={areInvalidCredentials(credentials)}>
+                <Button type='submit' disabled={areInvalidCredentials(credentials)} variant={'contained'}>
                     {loggingIn ? 'Prijava' : 'Registracija'}
-                </button>
+                </Button>
             </form>
             {
                 typeof errorMessage !== 'undefined' &&
