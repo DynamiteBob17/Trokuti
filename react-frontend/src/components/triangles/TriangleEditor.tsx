@@ -133,7 +133,7 @@ function TriangleEditor({triangle, setTriangle, method, route, buttonText}: Tria
                     <text style={{fontSize: '20px'}} x={triangle.c.x} y={triangle.c.y}>C</text>
 
                     <text style={{fontSize: '12px'}} x={2} y={10}>(0,0)</text>
-                    <text style={{fontSize: '12px'}} x={452} y={345}>(500,330)</text>
+                    <text style={{fontSize: '12px'}} x={452} y={325}>(500,330)</text>
                 </svg>
                 <p>Opseg = {perimeter.toFixed(2)}</p>
                 <p style={{color: area === 0 ? 'red' : 'initial'}}>
