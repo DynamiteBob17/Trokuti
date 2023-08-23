@@ -3,11 +3,11 @@ import ITriangle, {ITriangles, triangleTypeByAnglesDict, triangleTypeBySidesDict
 import Loading from '../Loading.tsx';
 import makeConfig from '../../util/axiosConfig.ts';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
 import IGenericApiResponse from '../../entities/IGenericApiResponse.ts';
 import {TOKEN_COOKIE_NAME, useAuth} from '../authentication/AuthProvider.tsx';
 import './Triangles.scss';
 import jsPDF from 'jspdf';
+import {Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
 
 function Triangles() {
     const [triangles, setTriangles] = useState<ITriangles>([]);
@@ -79,54 +79,64 @@ function Triangles() {
 
     return (
         <div className={'triangles'}>
-            <Link to={'/kreirajTrokut'}>Kreiraj novi trokut</Link>
-            <p>Moji trokuti:</p>
-            <table>
-                <thead>
-                <tr>
-                    <th>Naziv</th>
-                    <th>Opseg</th>
-                    <th>Površina</th>
-                    <th>Vrsta po kutovima</th>
-                    <th>Vrsta po stranicama</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                {
-                    triangles.map(triangle =>
-                        <tr key={triangle.id}>
-                            <td>{triangle.name}</td>
-                            <td>{triangle.perimeter.toFixed(2)}</td>
-                            <td>{triangle.area.toFixed(2)}</td>
-                            <td>{triangleTypeByAnglesDict[triangle.typeByAngles]}</td>
-                            <td>{triangleTypeBySidesDict[triangle.typeBySides]}</td>
-                            <td>
-                                <Link className={'triangle_edit_link'} to={'/urediTrokut/' + triangle.id}>
-                                    Uredi
-                                </Link>
-                            </td>
-                            <td>
-                                <button onClick={() => generatePDF(triangle)}>
-                                    Preuzmi
-                                </button>
-                            </td>
-                            <td>
-                                <button
-                                    className={'delete_button'}
-                                    onClick={() => handleDelete(triangle)}
-                                    disabled={deleting}
-                                >
-                                    Izbriši
-                                </button>
-                            </td>
-                        </tr>
-                    )
-                }
-                </tbody>
-            </table>
+            <Button variant={'outlined'} color={'info'} style={{textTransform: 'none'}} href={'/kreirajTrokut'}>Kreiraj novi trokut</Button>
+            <h2 style={{fontStyle: 'italic'}}>Moji trokuti:</h2>
+            <TableContainer>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <th>Naziv</th>
+                            <th>Opseg</th>
+                            <th>Površina</th>
+                            <th>Vrsta po kutovima</th>
+                            <th>Vrsta po stranicama</th>
+                            <th>Opcije</th>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {
+                            triangles.map(triangle =>
+                                <TableRow key={triangle.id}>
+                                    <TableCell>{triangle.name}</TableCell>
+                                    <TableCell>{triangle.perimeter.toFixed(2)}</TableCell>
+                                    <TableCell>{triangle.area.toFixed(2)}</TableCell>
+                                    <TableCell>{triangleTypeByAnglesDict[triangle.typeByAngles]}</TableCell>
+                                    <TableCell>{triangleTypeBySidesDict[triangle.typeBySides]}</TableCell>
+                                    <TableCell>
+                                        <Button
+                                            variant={'contained'}
+                                            color={'info'}
+                                            size={'small'}
+                                            onClick={() => generatePDF(triangle)}
+                                        >
+                                            Preuzmi
+                                        </Button>
+                                        <Button
+                                            variant={'contained'}
+                                            color={'warning'}
+                                            size={'small'}
+                                            className={'triangle_edit_link'}
+                                            href={'/urediTrokut/' + triangle.id}
+                                        >
+                                            Uredi
+                                        </Button>
+                                        <Button
+                                            variant={'contained'}
+                                            color={'error'}
+                                            size={'small'}
+                                            className={'delete_button'}
+                                            onClick={() => handleDelete(triangle)}
+                                            disabled={deleting}
+                                        >
+                                            Izbriši
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                            )
+                        }
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </div>
     );
 }
