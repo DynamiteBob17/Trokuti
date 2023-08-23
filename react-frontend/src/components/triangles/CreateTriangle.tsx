@@ -2,20 +2,18 @@ import ITriangle, {ETriangleTypeByAngles, ETriangleTypeBySides} from '../../enti
 import TriangleEditor from './TriangleEditor.tsx';
 import {useState} from 'react';
 
-import './CreateTriangle.scss';
-
 export const initialTriangle: ITriangle = {
     name: '',
     a: {
         x: 200,
-        y: 10
+        y: 40
     },
     b: {
         x: 200,
         y: 200
     },
     c: {
-        x: 10,
+        x: 40,
         y: 200
     },
     perimeter: -1,

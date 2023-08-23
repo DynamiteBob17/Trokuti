@@ -9,7 +9,6 @@ import makeConfig from '../../util/axiosConfig.ts';
 import {TOKEN_COOKIE_NAME, useAuth} from '../authentication/AuthProvider.tsx';
 import {AxiosError} from 'axios';
 import IError from '../../entities/IError.ts';
-import './ModifyTriangle.scss';
 
 function ModifyTriangle() {
     const [triangle, setTriangle] = useState<ITriangle>(Object.assign({}, initialTriangle));

@@ -1,4 +1,3 @@
-import './CreateTriangle.scss';
 import React, {ChangeEvent, useState} from 'react';
 import ITriangle, {
     calculateArea,
@@ -11,6 +10,7 @@ import makeConfig from '../../util/axiosConfig.ts';
 import {TOKEN_COOKIE_NAME, useAuth} from '../authentication/AuthProvider.tsx';
 import {useNavigate} from 'react-router-dom';
 import './TriangleEditor.scss';
+import {Button, TextField} from '@mui/material';
 
 type TriangleEditorProps = {
     triangle: ITriangle,
@@ -87,33 +87,67 @@ function TriangleEditor({triangle, setTriangle, method, route, buttonText}: Tria
     return (
         <div className={'triangle_editor'}>
             <form onSubmit={handleSubmit}>
-                <input type={'text'} value={triangle.name} onChange={handleNameChange}
-                       placeholder={'Ime trokuta (maks. 33 znakova)'}/>
+                <TextField size={'small'} type={'text'} value={triangle.name} onChange={handleNameChange}
+                       label={'Ime trokuta (obavezno)'}/>
                 <div className={'coordinate_input'}>
-                    <div>A</div>
-                    <input name={'a.x'} value={triangle.a.x} onChange={handleCoordinateChange}/>
-                    <input name={'a.y'} value={triangle.a.y} onChange={handleCoordinateChange}/>
+                    <div className={'point_label'}>A</div>
+                    <TextField
+                        variant={'standard'} size={'small'} label={'x'} style={{marginRight: '10px'}}
+                        name={'a.x'} value={triangle.a.x} onChange={handleCoordinateChange}
+                    />
+                    <TextField
+                        variant={'standard'} size={'small'} label={'y'}
+                        name={'a.y'} value={triangle.a.y} onChange={handleCoordinateChange}
+                    />
                 </div>
                 <div className={'coordinate_input'}>
-                    <div>B</div>
-                    <input name={'b.x'} value={triangle.b.x} onChange={handleCoordinateChange}/>
-                    <input name={'b.y'} value={triangle.b.y} onChange={handleCoordinateChange}/>
+                    <div className={'point_label'}>B</div>
+                    <TextField
+                        variant={'standard'} size={'small'} label={'x'} style={{marginRight: '10px'}}
+                        name={'b.x'} value={triangle.b.x} onChange={handleCoordinateChange}
+                    />
+                    <TextField
+                        variant={'standard'} size={'small'} label={'y'}
+                        name={'b.y'} value={triangle.b.y} onChange={handleCoordinateChange}
+                    />
                 </div>
                 <div className={'coordinate_input'}>
-                    <div>C</div>
-                    <input name={'c.x'} value={triangle.c.x} onChange={handleCoordinateChange}/>
-                    <input name={'c.y'} value={triangle.c.y} onChange={handleCoordinateChange}/>
+                    <div className={'point_label'}>C</div>
+                    <TextField
+                        variant={'standard'} size={'small'} label={'x'} style={{marginRight: '10px'}}
+                        name={'c.x'} value={triangle.c.x} onChange={handleCoordinateChange}
+                    />
+                    <TextField
+                        variant={'standard'} size={'small'} label={'y'}
+                        name={'c.y'} value={triangle.c.y} onChange={handleCoordinateChange}
+                    />
                 </div>
-                <svg width={'33vw'} height={'33vh'}>
-                    <polygon points={coords}></polygon>
+                <svg style={{outline: '1px solid black', margin: '15px', borderRadius: '5px'}}
+                     width={'500px'}
+                     height={'330px'}
+                >
+                    <polygon style={{fill: 'none', stroke: 'black', strokeWidth: '2'}} points={coords}></polygon>
+
+                    <text style={{fontSize: '20px'}} x={triangle.a.x} y={triangle.a.y}>A</text>
+                    <text style={{fontSize: '20px'}} x={triangle.b.x} y={triangle.b.y}>B</text>
+                    <text style={{fontSize: '20px'}} x={triangle.c.x} y={triangle.c.y}>C</text>
+
+                    <text style={{fontSize: '12px'}} x={2} y={10}>(0,0)</text>
+                    <text style={{fontSize: '12px'}} x={452} y={345}>(500,330)</text>
                 </svg>
                 <p>Opseg = {perimeter.toFixed(2)}</p>
                 <p style={{color: area === 0 ? 'red' : 'initial'}}>
                     Površina = {area.toFixed(2)} {area === 0 && 'NIJE TROKUT'}
                 </p>
-                <p>Vrsta po kutovima = {typeByAngles}</p>
-                <p>Vrsta prema odnosu duljina stranica = {typeBySides}</p>
-                <button type={'submit'} disabled={!triangle.name || area === 0 || saving}>{buttonText}</button>
+                <p>Vrsta po kutovima = {typeByAngles}, vrsta prema odnosu duljina stranica = {typeBySides}</p>
+                <Button
+                    type={'submit'}
+                    disabled={!triangle.name || area === 0 || saving}
+                    variant={'contained'}
+                    color={'success'}
+                >
+                    {buttonText}
+                </Button>
             </form>
         </div>
     );
