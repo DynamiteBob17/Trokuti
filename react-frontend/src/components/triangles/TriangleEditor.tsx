@@ -5,7 +5,6 @@ import ITriangle, {
     triangleTypeByAnglesDict, triangleTypeBySidesDict
 } from '../../entities/ITriangle.ts';
 import axios from 'axios';
-import {IToken} from '../../entities/ICredentials.ts';
 import makeConfig from '../../util/axiosConfig.ts';
 import {TOKEN_COOKIE_NAME, useAuth} from '../authentication/AuthProvider.tsx';
 import {useNavigate} from 'react-router-dom';
@@ -62,7 +61,7 @@ function TriangleEditor({triangle, setTriangle, method, route, buttonText}: Tria
         try {
             setSaving(true);
 
-            await axios<IToken>(makeConfig(
+            await axios<ITriangle>(makeConfig(
                 method, route, cookies[TOKEN_COOKIE_NAME], triangle)
             );
 
