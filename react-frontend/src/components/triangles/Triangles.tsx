@@ -68,7 +68,7 @@ function Triangles() {
             triangle.b.x * 0.2 + 10,
             triangle.b.y * 0.2 + 100,
             triangle.c.x * 0.2 + 10,
-            triangle.b.y * 0.2 + 100
+            triangle.c.y * 0.2 + 100
         );
         doc.save(`trokut - ${triangle.name}.pdf`);
     };
