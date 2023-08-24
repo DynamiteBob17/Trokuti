@@ -6,6 +6,7 @@ logging:
 server:
   error:
     include-stacktrace: never
+  port: 5000
 spring:
   jpa:
     hibernate:
