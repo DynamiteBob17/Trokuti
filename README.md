@@ -5,6 +5,7 @@
 4. Nakon toga instalirate potrebene pakete s `npm install` ili `yarn install`
 5. Na kraju pokrenete React aplikaciju s `npm run dev` ili `yarn run dev`
 
+- [live demo](https://clipchamp.com/watch/0UNiAOwhnFD)
 - *napomena*: Spring Boot aplikacija koristi H2 in-memory bazu podataka zbog jednostavnosti,
   stoga uglavnom svi podatci spremljeni na serveru nestaju prilikom gašenja ili ponovnog pokretanja Spring Boot aplikacije
 
