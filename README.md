@@ -1,5 +1,5 @@
 # Kako pokrenuti aplikaciju?
-1. Potrebni su Node.js, yarn/npm u Java 17+
+1. Potrebni su Node.js, yarn/npm i Java 17+
 2. Pokrenete Spring Boot server aplikaciju iz **root** direktorija s `./mvnw spring-boot:run`
 3. Premjestite se u 'react-frontend' direktorij sa `cd react-frontend`
 4. Nakon toga instalirate potrebene pakete s `npm install` ili `yarn install`
